@@ -1,0 +1,81 @@
+let movies = [
+    {
+        name: "falcon and the winter soldier",
+        des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.",
+        image: "https://raw.githubusercontent.com/Pranav-8bit/hotstar/main/images/slider%202.PNG"
+    },
+    {
+        name: "loki",
+        des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.",
+        image: "https://raw.githubusercontent.com/Pranav-8bit/hotstar/main/images/slider%201.PNG"
+    },
+    {
+        name: "wanda vision",
+        des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.",
+        image: "https://raw.githubusercontent.com/Pranav-8bit/hotstar/main/images/slider%203.PNG"
+    },
+    {
+        name: "raya and the last dragon",
+        des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.",
+        image: "https://raw.githubusercontent.com/Pranav-8bit/hotstar/main/images/slider%204.PNG"
+    },
+    {
+        name: "luca",
+        des: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odit, dicta.",
+        image: "https://raw.githubusercontent.com/Pranav-8bit/hotstar/main/images/slider%205.PNG"
+    }
+
+];
+
+const carousel = document.querySelector('.carousel');
+let sliders = []; 
+
+let slideIndex = 0; //track the current slide
+
+const createSlide = () => {
+    if(slideIndex >= movies.length){
+        slideIndex = 0;
+    }
+    
+    //create DOM elements 
+    //slider div , slidecontent div, movie title div, movie des div, h1 & p div
+    let slide = document.createElement('div');
+    var imgElement = document.createElement('img');
+    let content = document.createElement('div');
+    let h1 = document.createElement('h1');
+    let p = document.createElement('p');
+
+    //attaching all elements
+    imgElement.appendChild(document.createTextNode(''));
+    h1.appendChild(document.createTextNode(movies[slideIndex].name));
+    p.appendChild(document.createTextNode(movies[slideIndex].des));
+    content.appendChild(h1);
+    content.appendChild(p);
+    slide.appendChild(imgElement);
+    carousel.appendChild(slide);
+    
+
+    //setting up images
+    imgElement.src = movies[slideIndex].image;
+    slideIndex++;
+
+    //setting elements classnames
+    slide.className = "slider";
+    content.className = 'slide-content';
+    h1.className = 'movie-title';
+    p.className = 'movie-des';
+
+    sliders.push(slide);
+
+    if(sliders.length) {
+        sliders[0].style.marginLeft = `calc(-${100 * (sliders.length - 2)}% - ${30 * (sliders.length - 2)}px)`;
+    };
+};
+
+for (let i = 0; i < 3; i++) {
+    createSlide();
+}
+
+setInterval(()=> {
+    createSlide();
+}, 3000);
