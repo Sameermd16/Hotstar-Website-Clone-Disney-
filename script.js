@@ -94,3 +94,5 @@ videoCards.forEach((item) => {
         video.pause();
     });
 });
+
+//card sliders
