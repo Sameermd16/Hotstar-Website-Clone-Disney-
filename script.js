@@ -53,8 +53,8 @@ const createSlide = () => {
     content.appendChild(p);
     slide.appendChild(imgElement);
     carousel.appendChild(slide);
+    // slide.appendChild(content);
     
-
     //setting up images
     imgElement.src = movies[slideIndex].image;
     slideIndex++;
@@ -96,3 +96,20 @@ videoCards.forEach((item) => {
 });
 
 //card sliders
+
+let cardContainers = [...document.querySelectorAll('.card-container')];
+let preBtn = [...document.querySelectorAll('.pre-btn')];
+let nxtBtn = document.querySelectorAll('.nxt-btn');
+
+cardContainers.forEach((item, i) => {
+    let containerDimensions = item.getBoundingClientRect();
+    let containerWidth = containerDimensions.width;
+
+    nxtBtn[i].addEventListener('click', () => {
+        item.scrollLeft += containerWidth - 200;
+    })
+
+    preBtn[i].addEventListener('click', () => {
+        item.scrollLeft -= containerWidth + 200;
+    })
+});
